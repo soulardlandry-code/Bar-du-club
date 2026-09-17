@@ -1,0 +1,14 @@
+BAR DU CLUB — VERSION INSTALLABLE
+
+Fichiers :
+- index.html : application
+- manifest.webmanifest : installation sur écran d'accueil
+- sw.js : fonctionnement hors connexion après la première ouverture
+
+IMPORTANT :
+Cette version doit être publiée sur un hébergement HTTPS (par exemple GitHub Pages).
+Il ne faut pas ouvrir index.html directement depuis l'application Fichiers de l'iPhone.
+
+Une fois publiée :
+iPhone : ouvrir l'adresse dans Safari > Partager > Sur l'écran d'accueil.
+Android : ouvrir l'adresse dans Chrome > Installer l'application / Ajouter à l'écran d'accueil.
