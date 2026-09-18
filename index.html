@@ -1,14 +1,81 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#164f3d"><link rel="manifest" href="manifest.webmanifest"><title>Le Bar du Club</title>
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#0f4b3a">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Le Bar du Club</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#f6efe3;color:#17251f;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
-body{padding:max(56px,env(safe-area-inset-top)) 12px max(12px,env(safe-area-inset-bottom))}.app{width:100%;max-width:600px;margin:0 auto}
-header{background:#164f3d;color:#fff;border-radius:0 0 22px 22px;padding:16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}h1{font-size:25px;margin:0 0 8px}.sub{font-size:18px}.headtotal{font-size:36px;font-weight:850;white-space:nowrap}
-.item{display:grid;grid-template-columns:62px 1fr auto;align-items:center;min-height:96px;background:#fffaf2;border:2px solid #e3d5bf;border-radius:20px;margin:9px 0;padding:10px 12px}.ico{font-size:38px;text-align:center}.name{font-size:20px;font-weight:800;line-height:1.15}.price{font-size:17px;font-weight:800;color:#17604a;margin-top:7px}.controls{display:flex;align-items:center;gap:10px}.controls button{width:62px;height:62px;border:0;border-radius:17px;font-size:35px;font-weight:900}.minus{background:#e9e0d2;color:#164f3d}.plus{background:#164f3d;color:#fff}.qty{min-width:28px;text-align:center;font-size:24px;font-weight:850}
-.total{display:flex;justify-content:space-between;align-items:center;background:#164f3d;color:#fff;border-radius:19px;padding:13px 16px;margin:10px 0;font-size:25px;font-weight:850}.total span:last-child{color:#f4cf76;font-size:28px}.cash{background:#fffaf2;border:2px solid #e3d5bf;border-radius:20px;padding:12px;margin-top:10px}.line{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:19px;font-weight:800}.cash input{width:145px;height:54px;border:2px solid #cbb99f;border-radius:14px;background:#fff;font-size:25px;text-align:right;padding:5px 9px}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:10px 0}.quick button{height:48px;border:0;border-radius:14px;background:#e9e0d2;color:#0788ed;font-size:18px;font-weight:800}.change{border-top:2px solid #e3d5bf;padding-top:10px}.change strong{font-size:27px}#reset{width:100%;height:55px;margin-top:10px;border:2px solid #cbb99f;border-radius:17px;background:#f8f1e6;color:#944936;font-size:18px;font-weight:800}
-</style></head><body><div class="app"><header><div><h1>🍻 Le Bar du Club</h1><div class="sub" id="articles">0 article sélectionné</div></div><div class="headtotal" id="headTotal">0,00 €</div></header><div id="items"></div><div class="total"><span>Total à payer</span><span id="total">0,00 €</span></div><div class="cash"><div class="line"><label for="given">💶 Somme donnée</label><div><input id="given" inputmode="decimal"> €</div></div><div class="quick"><button data-cash="5">5 €</button><button data-cash="10">10 €</button><button data-cash="20">20 €</button><button data-cash="50">50 €</button></div><div class="line change"><span id="changeLabel">Monnaie à rendre</span><strong id="change">0,00 €</strong></div></div><button id="reset">↻ Nouvelle partie</button></div>
+*{box-sizing:border-box}
+:root{--green:#104c3b;--cream:#f8f2e8;--card:#fffaf3;--line:#dfd1bd;--gold:#ffd66f;--red:#b84434}
+html,body{margin:0;background:var(--cream);color:#10271f;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+body{padding:calc(env(safe-area-inset-top) + 34px) 12px calc(env(safe-area-inset-bottom) + 12px)}
+.app{max-width:620px;margin:auto}
+header{min-height:120px;background:var(--green);color:#fff;border-radius:22px;padding:18px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.title{font-size:29px;font-weight:900;line-height:1.05}.tag{font-size:18px;margin-top:10px}.headRight{text-align:right}.headTotal{font-size:38px;font-weight:900;white-space:nowrap}
+.item{min-height:105px;background:var(--card);border:2px solid var(--line);border-radius:22px;margin:10px 0;padding:10px 12px;display:grid;grid-template-columns:72px minmax(0,1fr) auto;align-items:center;gap:8px}
+.ico{font-size:45px;text-align:center}.name{font-size:22px;font-weight:900;line-height:1.12}.price{font-size:19px;font-weight:850;color:#087050;margin-top:8px}
+.controls{display:flex;align-items:center;gap:10px}.ctrl{width:68px;height:68px;border:0;border-radius:19px;font-size:39px;font-weight:900}.minus{background:#eae1d5;color:var(--green)}.plus{background:var(--green);color:#fff}.qty{min-width:30px;text-align:center;font-size:29px;font-weight:900}
+.pay{background:var(--green);color:#fff;border-radius:21px;padding:15px 18px;display:flex;justify-content:space-between;align-items:center;font-size:27px;font-weight:900;margin:12px 0}.payTotal{color:var(--gold);font-size:32px}
+.cash{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:14px}.cashline{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:21px;font-weight:900}.inputwrap{white-space:nowrap}.cash input{width:145px;height:58px;border:2px solid #c9b79d;border-radius:15px;background:#fff;font-size:27px;font-weight:800;text-align:right;padding:6px 9px}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}.quick button{height:54px;border:0;border-radius:15px;background:#eae1d5;color:#0788ee;font-size:20px;font-weight:900}
+.change{border-top:2px solid #e3d6c4;padding-top:12px}.change strong{font-size:29px}
+#reset{width:100%;height:64px;margin-top:12px;border:0;border-radius:20px;background:var(--red);color:#fff;font-size:22px;font-weight:900}
+@media(max-width:390px){.item{grid-template-columns:58px minmax(0,1fr) auto}.ico{font-size:38px}.name{font-size:19px}.ctrl{width:60px;height:64px}.controls{gap:6px}.title{font-size:26px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+ <div><div class="title">🍻 Le Bar du Club</div><div class="tag" id="articles">0 article sélectionné</div></div>
+ <div class="headRight"><div class="headTotal" id="headTotal">0,00 €</div></div>
+</header>
+<div id="items"></div>
+<div class="pay"><span>Total à payer</span><span class="payTotal" id="total">0,00 €</span></div>
+<div class="cash">
+ <div class="cashline"><span>💶 Somme donnée</span><span class="inputwrap"><input id="given" inputmode="decimal" autocomplete="off"> €</span></div>
+ <div class="quick"><button data-cash="5">5 €</button><button data-cash="10">10 €</button><button data-cash="20">20 €</button><button data-cash="50">50 €</button></div>
+ <div class="cashline change"><span id="changeLabel">Monnaie à rendre</span><strong id="change">0,00 €</strong></div>
+</div>
+<button id="reset">↻ &nbsp; Nouvelle partie</button>
+</div>
 <script>
-const products=[["🍺","Bière pression",1.60],["🍷","Vin / Cidre / Café — 10 cl",0.80],["🥤","Petit soda / jus de fruit",0.40],["🧃","Grand soda / jus de fruit",0.80],["🥪","Sandwich",1.50]],q=[0,0,0,0,0],items=document.getElementById("items"),money=n=>n.toFixed(2).replace(".",",")+" €";
-products.forEach((p,i)=>{let d=document.createElement("div");d.className="item";d.innerHTML=`<div class="ico">${p[0]}</div><div><div class="name">${p[1]}</div><div class="price">${money(p[2])}</div></div><div class="controls"><button class="minus" data-i="${i}">−</button><span class="qty" id="q${i}">0</span><button class="plus" data-i="${i}">+</button></div>`;items.appendChild(d)});
-function calc(){let count=q.reduce((a,b)=>a+b,0),total=q.reduce((s,n,i)=>s+n*products[i][2],0);articles.textContent=count+" article"+(count>1?"s":"")+" sélectionné"+(count>1?"s":"");document.getElementById("total").textContent=money(total);headTotal.textContent=money(total);let given=parseFloat(givenEl.value.replace(",","."))||0,diff=given-total;if(given>0&&diff<0){changeLabel.textContent="Il manque";change.textContent=money(-diff)}else{changeLabel.textContent="Monnaie à rendre";change.textContent=money(Math.max(0,diff))}}
-const givenEl=document.getElementById("given");document.addEventListener("click",e=>{if(e.target.matches(".plus,.minus")){let i=+e.target.dataset.i;e.target.classList.contains("plus")?q[i]++:q[i]=Math.max(0,q[i]-1);document.getElementById("q"+i).textContent=q[i];calc()}if(e.target.dataset.cash){givenEl.value=e.target.dataset.cash;calc()}});givenEl.addEventListener("input",calc);reset.addEventListener("click",()=>{q.fill(0);q.forEach((_,i)=>document.getElementById("q"+i).textContent=0);givenEl.value="";calc()});if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js"));calc();
-</script></body></html>
+const products=[
+["🍺","Bière pression",1.60],
+["🍷","Vin / Cidre / Café — 10 cl",0.80],
+["🥤","Petit soda / jus de fruit",0.40],
+["🧃","Grand soda / jus de fruit",0.80],
+["🥪","Sandwich",1.50]
+];
+const q=[0,0,0,0,0], items=document.getElementById("items"), given=document.getElementById("given");
+const money=n=>n.toFixed(2).replace(".",",")+" €";
+products.forEach((p,i)=>{
+ const row=document.createElement("div"); row.className="item";
+ row.innerHTML=`<div class="ico">${p[0]}</div><div><div class="name">${p[1]}</div><div class="price">${money(p[2])}</div></div><div class="controls"><button class="ctrl minus" data-i="${i}">−</button><span class="qty" id="q${i}">0</span><button class="ctrl plus" data-i="${i}">+</button></div>`;
+ items.appendChild(row);
+});
+function calc(){
+ const count=q.reduce((a,b)=>a+b,0);
+ const total=q.reduce((s,n,i)=>s+n*products[i][2],0);
+ document.getElementById("articles").textContent=count+" article"+(count>1?"s":"")+" sélectionné"+(count>1?"s":"");
+ document.getElementById("headTotal").textContent=money(total);
+ document.getElementById("total").textContent=money(total);
+ const paid=parseFloat(given.value.replace(",","."))||0, d=paid-total;
+ if(paid>0 && d<0){changeLabel.textContent="Il manque";change.textContent=money(-d)}
+ else{changeLabel.textContent="Monnaie à rendre";change.textContent=money(Math.max(0,d))}
+}
+document.addEventListener("click",e=>{
+ if(e.target.classList.contains("plus")||e.target.classList.contains("minus")){
+  const i=Number(e.target.dataset.i);
+  if(e.target.classList.contains("plus"))q[i]++; else q[i]=Math.max(0,q[i]-1);
+  document.getElementById("q"+i).textContent=q[i];calc();
+ }
+ if(e.target.dataset.cash){given.value=e.target.dataset.cash;calc()}
+});
+given.addEventListener("input",calc);
+document.getElementById("reset").addEventListener("click",()=>{q.fill(0);q.forEach((x,i)=>document.getElementById("q"+i).textContent="0");given.value="";calc()});
+if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}))}
+calc();
+</script>
+</body></html>
