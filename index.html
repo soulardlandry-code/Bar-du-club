@@ -1,0 +1,43 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#173f32">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Bar du Club">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Le Bar du Club</title><style>
+*{box-sizing:border-box}body{margin:0;background:#f4eee3;font-family:Arial,sans-serif;color:#18251f}.app{max-width:600px;margin:auto;padding:7px}
+header{background:#173f32;color:#fff;border-radius:0 0 16px 16px;padding:9px 11px;display:flex;align-items:center;justify-content:space-between}h1{font-size:18px;margin:0}#total{font-size:26px;font-weight:bold}
+.item{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:7px;background:#fffaf2;border:1px solid #ded2bf;border-radius:12px;padding:7px;margin-top:5px}.ico{font-size:25px;text-align:center}.txt b{display:block;font-size:13px}.txt span{font-size:11px;color:#245c49;font-weight:bold}
+.controls{display:flex;align-items:center;gap:6px}.controls button{width:42px;height:42px;border:0;border-radius:10px;background:#e8dfd1;color:#173f32;font-size:24px;font-weight:bold;-webkit-appearance:none;appearance:none}.controls .plus{background:#173f32;color:white}.controls strong{width:18px;text-align:center;font-size:15px}
+.pay{display:flex;justify-content:space-between;background:#173f32;color:#fff;border-radius:11px;padding:8px 11px;margin-top:5px;font-weight:bold}#pay{color:#f4d88e;font-size:19px}
+.cash{background:#fffaf2;border:1px solid #ded2bf;border-radius:12px;padding:7px;margin-top:5px}.line,.change{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:bold}input{width:100px;padding:7px;font-size:16px;text-align:right;border:1px solid #bfb19c;border-radius:8px}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:5px}.quick button{padding:7px;border:0;border-radius:8px;background:#e8dfd1;font-weight:bold}.change{border-top:1px solid #ded2bf;margin-top:5px;padding-top:5px}#change{font-size:18px}
+#reset{width:100%;padding:8px;margin-top:5px;border:1px solid #c9baa4;border-radius:9px;background:transparent;color:#87402f;font-weight:bold}
+</style></head><body><div class="app"><header><div><h1>🍻 Le Bar du Club</h1><small id="count">0 article sélectionné</small></div><div id="total">0,00 €</div></header>
+<div class="item"><div class="ico">🍺</div><div class="txt"><b>Bière pression</b><span>1,60 €</span></div>
+<div class="controls"><button type="button" id="m0">−</button><strong id="q0">0</strong><button type="button" class="plus" id="p0">+</button></div></div><div class="item"><div class="ico">🍷</div><div class="txt"><b>Vin / Cidre / Café — 10 cl</b><span>0,80 €</span></div>
+<div class="controls"><button type="button" id="m1">−</button><strong id="q1">0</strong><button type="button" class="plus" id="p1">+</button></div></div><div class="item"><div class="ico">🥤</div><div class="txt"><b>Petit soda / jus de fruit</b><span>0,40 €</span></div>
+<div class="controls"><button type="button" id="m2">−</button><strong id="q2">0</strong><button type="button" class="plus" id="p2">+</button></div></div><div class="item"><div class="ico">🧃</div><div class="txt"><b>Grand soda / jus de fruit</b><span>0,80 €</span></div>
+<div class="controls"><button type="button" id="m3">−</button><strong id="q3">0</strong><button type="button" class="plus" id="p3">+</button></div></div><div class="item"><div class="ico">🥪</div><div class="txt"><b>Sandwich</b><span>1,50 €</span></div>
+<div class="controls"><button type="button" id="m4">−</button><strong id="q4">0</strong><button type="button" class="plus" id="p4">+</button></div></div><div class="pay"><span>Total à payer</span><strong id="pay">0,00 €</strong></div>
+<div class="cash"><div class="line"><label for="given">💶 Somme donnée</label><span><input id="given" type="number" min="0" step="0.01" inputmode="decimal"> €</span></div>
+<div class="quick"><button type="button" id="c5">5 €</button><button type="button" id="c10">10 €</button><button type="button" id="c20">20 €</button><button type="button" id="c50">50 €</button></div>
+<div class="change"><span id="lab">Monnaie à rendre</span><strong id="change">0,00 €</strong></div></div><button type="button" id="reset">↻ Nouvelle partie</button></div>
+<script>
+var prices=[160,80,40,80,150];var q=[0,0,0,0,0];var totalCents=0;
+function euros(c){return (c/100).toFixed(2).replace(".",",")+" €";}
+function refresh(){var t=0,n=0;for(var i=0;i<5;i++){t+=prices[i]*q[i];n+=q[i];document.getElementById("q"+i).textContent=q[i];}totalCents=t;document.getElementById("total").textContent=euros(t);document.getElementById("pay").textContent=euros(t);document.getElementById("count").textContent=n+" article"+(n>1?"s":"")+" sélectionné"+(n>1?"s":"");cash();}
+function add(i){q[i]=q[i]+1;refresh();} function removeOne(i){if(q[i]>0)q[i]=q[i]-1;refresh();}
+for(let i=0;i<5;i++){document.getElementById("p"+i).addEventListener("click",function(){add(i);});document.getElementById("m"+i).addEventListener("click",function(){removeOne(i);});}
+function cash(){var x=parseFloat(document.getElementById("given").value);var o=document.getElementById("change"),l=document.getElementById("lab");if(isNaN(x)){l.textContent="Monnaie à rendre";o.textContent="0,00 €";return;}var d=Math.round(x*100)-totalCents;if(d>=0){l.textContent="Monnaie à rendre";o.textContent=euros(d);}else{l.textContent="Il manque";o.textContent=euros(-d);}}
+document.getElementById("given").addEventListener("input",cash);
+[5,10,20,50].forEach(function(v){document.getElementById("c"+v).addEventListener("click",function(){document.getElementById("given").value=v;cash();});});
+document.getElementById("reset").addEventListener("click",function(){q=[0,0,0,0,0];document.getElementById("given").value="";refresh();});refresh();
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("./sw.js");
+  });
+}
+</script></body></html>
