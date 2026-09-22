@@ -3,41 +3,44 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#0f4b3a">
+<meta name="theme-color" content="#0f5a43">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Bar du Club">
+<meta name="apple-mobile-web-app-title" content="Tarifs APH">
 <link rel="manifest" href="manifest.webmanifest">
-<title>Le Bar du Club</title>
+<title>Tarifs Saison 2026-2027</title>
 <style>
 *{box-sizing:border-box}
-:root{--green:#104c3b;--cream:#f8f2e8;--card:#fffaf2;--line:#dfd2bd;--beige:#e9e0d2;--gold:#f2cf72;--red:#984b3a}
+:root{--green:#0d5a43;--cream:#fbf5eb;--card:#fffaf3;--line:#dfd2bd;--beige:#eee5d7;--gold:#f2c94c;--red:#a33d2d}
 html,body{margin:0;background:var(--cream);color:#10251e;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
-body{padding:calc(env(safe-area-inset-top) + 22px) 7px calc(env(safe-area-inset-bottom) + 6px)}
+body{padding:calc(env(safe-area-inset-top) + 22px) 7px calc(env(safe-area-inset-bottom) + 10px)}
 .app{max-width:620px;margin:auto}
-header{min-height:82px;background:var(--green);color:#fff;border-radius:0 0 20px 20px;padding:13px 13px 10px;display:flex;justify-content:space-between;align-items:flex-start}
-.title{font-size:22px;font-weight:900;line-height:1.05}.sub{font-size:16px;margin-top:7px}.headtotal{font-size:31px;font-weight:900;white-space:nowrap;margin-top:3px}
-.item{min-height:72px;background:var(--card);border:1.5px solid var(--line);border-radius:16px;margin-top:6px;padding:7px 7px;display:grid;grid-template-columns:55px 1fr auto;gap:5px;align-items:center}
-.ico{font-size:30px;text-align:center}.name{font-size:17px;font-weight:800;line-height:1.08}.price{font-size:14px;font-weight:800;color:#087354;margin-top:5px}
+header{background:var(--green);color:#fff;border-radius:0 0 20px 20px;padding:17px 12px;text-align:center;margin-bottom:7px}
+.title{font-size:25px;font-weight:900;line-height:1.05}
+.item{min-height:72px;background:var(--card);border:1.5px solid var(--line);border-radius:16px;margin-top:6px;padding:6px;display:grid;grid-template-columns:86px 1fr auto;gap:5px;align-items:center}
+.pic{height:60px;width:82px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:10px}
+.pic img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply}
+.name{font-size:17px;font-weight:850;line-height:1.08}.price{font-size:15px;font-weight:850;color:#087354;margin-top:5px}
 .controls{display:flex;align-items:center;gap:6px}.controls button{width:50px;height:50px;border:0;border-radius:14px;font-size:30px;font-weight:900}.minus{background:var(--beige);color:var(--green)}.plus{background:var(--green);color:#fff}.qty{min-width:27px;text-align:center;font-size:21px;font-weight:900}
-.pay{background:var(--green);color:#fff;border-radius:15px;margin-top:7px;padding:10px 13px;display:flex;justify-content:space-between;align-items:center;font-size:21px;font-weight:900}.pay span:last-child{color:var(--gold);font-size:24px}
-.cash{background:var(--card);border:1.5px solid var(--line);border-radius:16px;margin-top:7px;padding:8px 9px}
-.line{display:flex;justify-content:space-between;align-items:center;font-size:16px;font-weight:800}.line input{width:118px;height:43px;border:1.5px solid #bba98e;border-radius:10px;background:#fff;font-size:21px;text-align:right;padding:4px 8px}
-.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:7px}.quick button{height:36px;border:0;border-radius:10px;background:var(--beige);color:#078af1;font-size:15px;font-weight:800}
-.change{border-top:1.5px solid var(--line);padding-top:7px;margin-top:7px;display:flex;justify-content:space-between;align-items:center;font-size:16px;font-weight:800}.change strong{font-size:22px}
-#reset{width:100%;height:42px;margin-top:7px;border:1.5px solid #c9b69a;border-radius:13px;background:transparent;color:var(--red);font-size:15px;font-weight:800}
-@media (max-height:760px){body{padding-top:calc(env(safe-area-inset-top) + 12px)}header{min-height:74px}.item{min-height:66px;margin-top:5px}.controls button{width:46px;height:46px}.cash{padding:6px 8px}.quick button{height:33px}}
+.pay{min-height:68px;background:var(--green);color:#fff;border-radius:16px;margin-top:7px;padding:11px 13px;display:flex;justify-content:space-between;align-items:center;font-size:25px;font-weight:900}.pay span:last-child{color:var(--gold);font-size:31px;white-space:nowrap}
+.cash{background:var(--card);border:1.5px solid var(--line);border-radius:16px;margin-top:7px;padding:9px}
+.line{display:flex;justify-content:space-between;align-items:center;font-size:17px;font-weight:850}.line input{width:118px;height:43px;border:1.5px solid #bba98e;border-radius:10px;background:#fff;font-size:21px;text-align:right;padding:4px 8px}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:7px}.quick button{height:38px;border:0;border-radius:10px;background:var(--beige);color:#078af1;font-size:16px;font-weight:850}
+.change{border-top:1.5px solid var(--line);padding-top:8px;margin-top:8px;display:flex;justify-content:space-between;align-items:center;font-size:17px;font-weight:850}.change strong{font-size:23px}
+#reset{width:100%;height:46px;margin-top:7px;border:1.5px solid #c9b69a;border-radius:13px;background:transparent;color:var(--red);font-size:16px;font-weight:850}
+.logo{display:block;width:155px;max-width:45%;margin:12px auto 0;border-radius:10px}
+@media (max-height:780px){body{padding-top:calc(env(safe-area-inset-top) + 12px)}header{padding:13px 10px}.title{font-size:23px}.item{min-height:66px;margin-top:5px}.pic{height:54px}.controls button{width:46px;height:46px}.pay{min-height:60px}.cash{padding:7px 8px}.quick button{height:34px}.logo{width:125px;margin-top:8px}}
 </style>
 </head>
 <body>
 <div class="app">
-<header><div><div class="title">🍻 Le Bar du Club</div><div class="sub" id="count">0 article sélectionné</div></div><div class="headtotal" id="topTotal">0,00 €</div></header>
+<header><div class="title">Tarifs Saison 2026-2027</div></header>
 
-<div class="item"><div class="ico">🍺</div><div><div class="name">Bière pression</div><div class="price">1,60 €</div></div><div class="controls"><button class="minus" onclick="chg(0,-1)">−</button><span class="qty" id="q0">0</span><button class="plus" onclick="chg(0,1)">+</button></div></div>
-<div class="item"><div class="ico">🍷</div><div><div class="name">Vin / Cidre / Café — 10 cl</div><div class="price">0,80 €</div></div><div class="controls"><button class="minus" onclick="chg(1,-1)">−</button><span class="qty" id="q1">0</span><button class="plus" onclick="chg(1,1)">+</button></div></div>
-<div class="item"><div class="ico">🥤</div><div><div class="name">Petit soda / jus de fruit</div><div class="price">0,40 €</div></div><div class="controls"><button class="minus" onclick="chg(2,-1)">−</button><span class="qty" id="q2">0</span><button class="plus" onclick="chg(2,1)">+</button></div></div>
-<div class="item"><div class="ico">🧃</div><div><div class="name">Grand soda / jus de fruit</div><div class="price">0,80 €</div></div><div class="controls"><button class="minus" onclick="chg(3,-1)">−</button><span class="qty" id="q3">0</span><button class="plus" onclick="chg(3,1)">+</button></div></div>
-<div class="item"><div class="ico">🥪</div><div><div class="name">Sandwich</div><div class="price">1,50 €</div></div><div class="controls"><button class="minus" onclick="chg(4,-1)">−</button><span class="qty" id="q4">0</span><button class="plus" onclick="chg(4,1)">+</button></div></div>
+<div class="item"><div class="pic"><img src="biere.jpg" alt="Bière pression"></div><div><div class="name">Bière pression</div><div class="price">1,60 €</div></div><div class="controls"><button class="minus" onclick="chg(0,-1)">−</button><span class="qty" id="q0">0</span><button class="plus" onclick="chg(0,1)">+</button></div></div>
+<div class="item"><div class="pic"><img src="vin.jpg" alt="Vin"></div><div><div class="name">Vin / Cidre / Café</div><div class="price">0,80 €</div></div><div class="controls"><button class="minus" onclick="chg(1,-1)">−</button><span class="qty" id="q1">0</span><button class="plus" onclick="chg(1,1)">+</button></div></div>
+<div class="item"><div class="pic"><img src="petit_soda.jpg" alt="Canettes Coca-Cola et Oasis"></div><div><div class="name">Petit soda / jus de fruit</div><div class="price">0,40 €</div></div><div class="controls"><button class="minus" onclick="chg(2,-1)">−</button><span class="qty" id="q2">0</span><button class="plus" onclick="chg(2,1)">+</button></div></div>
+<div class="item"><div class="pic"><img src="grand_soda.jpg" alt="Bouteilles Coca-Cola et Oasis"></div><div><div class="name">Grand soda / jus de fruit</div><div class="price">0,80 €</div></div><div class="controls"><button class="minus" onclick="chg(3,-1)">−</button><span class="qty" id="q3">0</span><button class="plus" onclick="chg(3,1)">+</button></div></div>
+<div class="item"><div class="pic"><img src="sandwich.jpg" alt="Sandwich jambon fromage"></div><div><div class="name">Sandwich</div><div class="price">1,50 €</div></div><div class="controls"><button class="minus" onclick="chg(4,-1)">−</button><span class="qty" id="q4">0</span><button class="plus" onclick="chg(4,1)">+</button></div></div>
 
 <div class="pay"><span>Total à payer</span><span id="total">0,00 €</span></div>
 <div class="cash">
@@ -46,17 +49,13 @@ header{min-height:82px;background:var(--green);color:#fff;border-radius:0 0 20px
 <div class="change"><span id="changeLabel">Monnaie à rendre</span><strong id="change">0,00 €</strong></div>
 </div>
 <button id="reset" onclick="resetAll()">↻ Nouvelle partie</button>
+<img class="logo" src="logo-aph.jpg" alt="Association du Palet Herbretais">
 </div>
 <script>
 const prices=[160,80,40,80,150],q=[0,0,0,0,0];
 const euro=c=>(c/100).toFixed(2).replace('.',',')+' €';
 function totalC(){return q.reduce((s,n,i)=>s+n*prices[i],0)}
-function render(){
- let n=q.reduce((a,b)=>a+b,0),t=totalC();
- q.forEach((v,i)=>document.getElementById('q'+i).textContent=v);
- document.getElementById('count').textContent=n+' article'+(n>1?'s':'')+' sélectionné'+(n>1?'s':'');
- document.getElementById('topTotal').textContent=euro(t);document.getElementById('total').textContent=euro(t);calcChange();
-}
+function render(){let t=totalC();q.forEach((v,i)=>document.getElementById('q'+i).textContent=v);document.getElementById('total').textContent=euro(t);calcChange()}
 function chg(i,d){q[i]=Math.max(0,q[i]+d);render()}
 function cashValue(){let v=document.getElementById('given').value.trim().replace(',','.');return v===''?0:Math.round((parseFloat(v)||0)*100)}
 function calcChange(){let g=cashValue(),t=totalC(),d=g-t,l=document.getElementById('changeLabel'),o=document.getElementById('change');if(g===0){l.textContent='Monnaie à rendre';o.textContent='0,00 €'}else if(d>=0){l.textContent='Monnaie à rendre';o.textContent=euro(d)}else{l.textContent='Il manque';o.textContent=euro(-d)}}
